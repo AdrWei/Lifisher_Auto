@@ -13,6 +13,8 @@ client = gspread.authorize(creds)
 
 # Open the Google Sheet
 SPREADSHEET_ID = os.getenv("SHEET_ID")
+spreadsheet = client.open_by_key(SPREADSHEET_ID)
+
 # 遍历所有工作表
 for sheet in spreadsheet.worksheets():
     print(f"正在更新工作表: {sheet.title}")
