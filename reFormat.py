@@ -1,3 +1,4 @@
+import os  # 导入 os 模块
 import gspread
 from google.oauth2.service_account import Credentials
 from gspread_formatting import *
