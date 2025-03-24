@@ -1,0 +1,33 @@
+name: Reformat_Sheet
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-sheet:
+    runs-on: ubuntu-latest
+    environment: LIFISHER_SHEET_SECRETS  # Replace with your environment name
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Python dependencies
+        run: |
+          pip install gspread google-auth google-auth-oauthlib google-auth-httplib2 gspread-formatting
+
+      - name: Create credentials file
+        run: echo '${{ secrets.SHEET_KEY }}' > credentials.json
+
+      - name: Run Python script
+        env:
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: python reFormat.py
+
+      - name: Remove credentials file
+        run: rm credentials.json
