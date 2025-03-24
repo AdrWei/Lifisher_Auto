@@ -26,7 +26,7 @@ jobs:
 
       - name: Run Python script
         env:
-          SHEET_ID: ${{ secrets.SHEET_ID }}
+          SHEET_ID: ${{ vars.SHEET_ID }}
         run: python reFormat.py
 
       - name: Remove credentials file
