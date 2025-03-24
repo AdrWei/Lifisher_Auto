@@ -1,4 +1,4 @@
-name: Assign Inquiries
+name: Assign_Inquiries
 
 on:
   schedule:
