@@ -41,7 +41,7 @@ jobs:
           Rscript -e 'install.packages(c("httr", "xml2", "jsonlite"), repos="https://cloud.r-project.org")'
 
       - name: Run script
-        run: Rscript Assign-Inquiry.R  # 运行 R 脚本
+        run: Rscript Assign_Inquiry.R  # 运行 R 脚本
         env:
           LIFISHER_CODES: ${{ secrets.LIFISHER_CODES }}
           LIFISHER_TOKEN: ${{ secrets.LIFISHER_TOKEN }}
