@@ -24,7 +24,8 @@ for sheet in spreadsheet.worksheets():
         textFormat=TextFormat(
             fontSize=10,
             foregroundColor=Color(0, 0, 0)  # Black color
-        )
+        ),
+        horizontalAlignment="LEFT"  # 文字左对齐
     )
 
     # 应用格式化到所有行
