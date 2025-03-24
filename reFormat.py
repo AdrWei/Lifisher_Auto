@@ -33,7 +33,6 @@ for sheet in spreadsheet.worksheets():
     format_cell_range(sheet, format_range, cell_format)
 
     # 设置行高
-    for row in range(1, rows + 1):
-        set_row_height(sheet, row, 21)
+    set_row_height(sheet, f"1:{rows}", 21)
 
 print("Google Sheet 更新成功！")
