@@ -11,24 +11,26 @@ creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE
 client = gspread.authorize(creds)
 
 # Open the Google Sheet
-SPREADSHEET_ID = 'your-spreadsheet-id'  # Replace with your Google Sheet ID
-sheet = client.open_by_key(SPREADSHEET_ID).sheet1  # Update to the specific sheet if needed
+SPREADSHEET_ID = os.getenv("SHEET_ID")
+# 遍历所有工作表
+for sheet in spreadsheet.worksheets():
+    print(f"正在更新工作表: {sheet.title}")
 
-# Define the formatting rules
-cell_format = CellFormat(
-    textFormat=TextFormat(
-        fontSize=10,
-        foregroundColor=Color(0, 0, 0)  # Black color
+    # 定义格式化规则
+    cell_format = CellFormat(
+        textFormat=TextFormat(
+            fontSize=10,
+            foregroundColor=Color(0, 0, 0)  # Black color
+        )
     )
-)
 
-# Apply formatting to all rows
-rows = sheet.row_count
-format_range = f"A1:{chr(64 + sheet.col_count)}{rows}"  # Full sheet range
-format_cell_range(sheet, format_range, cell_format)
+    # 应用格式化到所有行
+    rows = sheet.row_count
+    format_range = f"A1:{chr(64 + sheet.col_count)}{rows}"  # Full sheet range
+    format_cell_range(sheet, format_range, cell_format)
 
-# Set row height
-for row in range(1, rows + 1):
-    set_row_height(sheet, row, 21)
+    # 设置行高
+    for row in range(1, rows + 1):
+        set_row_height(sheet, row, 21)
 
-print("Google Sheet updated successfully!")
+print("Google Sheet 更新成功！")
