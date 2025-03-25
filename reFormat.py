@@ -23,12 +23,6 @@ for sheet in spreadsheet.worksheets():
     # 定义格式化规则
     cell_format = CellFormat(
         backgroundColor=Color(1, 1, 1),  # 白色背景 (RGB: 1, 1, 1)
-        borders=Borders(  # 无框线
-            top=None,
-            bottom=None,
-            left=None,
-            right=None
-        ),
         textFormat=TextFormat(
             fontSize=10,
             foregroundColor=Color(0, 0, 0)  # Black color
