@@ -22,7 +22,6 @@ tryCatch({
   
   # 解析 JSON
   codes <- fromJSON(lifisher_codes)
-  token_parts <- fromJSON(lifisher_token)
   constants <- fromJSON(lifisher_variables)
   
   # 提取 JSON 中的值
@@ -31,7 +30,7 @@ tryCatch({
   APPKEY <<- codes$APPKEY
   
   ## 重组 TOKEN
-  TOKEN <- paste0(token_parts$TOKEN_1, token_parts$TOKEN_2, token_parts$TOKEN_3, token_parts$TOKEN_4)
+  TOKEN <- lifisher_token
   
   # 常量定义
   LOGIN_URL <<- constants$LOGIN_URL
