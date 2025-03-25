@@ -1,0 +1,40 @@
+name: Keep_Lifisher_Updated
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # 北京时间 6 点
+  workflow_dispatch:
+
+jobs:
+  fetch-write-data:
+    runs-on: ubuntu-latest
+    environment: Lifisher_Sheet_Secrets  # Replace with your environment name
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Python dependencies
+        run: |
+          pip install gspread google-auth requests pandas google-api-python-client
+
+      - name: Create credentials file
+        run: echo '${{ secrets.SHEET_KEY }}' > credentials.json
+
+      - name: Run Python script
+        env:
+          LIFISHER_CODES: ${{ secrets.LIFISHER_CODES }}
+          LIFISHER_TOKEN: ${{ secrets.LIFISHER_TOKEN }}
+          LIFISHER_VARIABLES: ${{ vars.LIFISHER_VARIABLES }}
+          SHEET_ID: ${{ vars.SHEET_ID }}
+          LIFISHER_SHEET_ID: ${{ vars.LIFISHER_SHEET_ID }}
+
+        run: python GetPosted.py
+        
+      - name: Remove credentials file
+        run: rm credentials.json
