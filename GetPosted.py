@@ -157,10 +157,10 @@ filtered_data = filtered_data[columns_to_extract]
 
 # 从 Google Sheets 提取数据
 sheet_id = mySHEET_ID  # 替换为你的 Google Sheet ID
-sheet_name = "orderWeb"  # 替换为你的 sheet 名称
+sheet_name = "网站询盘"  # 替换为你的 sheet 名称
 columns_to_extract_sheet = ["询盘时间", "联系人", "国家", "客户分类", "跟进进程", "跟进情况"]  # 替换为你的列名
 extracted_data = fetch_sheet_data(sheet_id, sheet_name, columns_to_extract_sheet)
-extracted_data_social = fetch_sheet_data(sheet_id, "orderSocial", columns_to_extract_sheet)
+extracted_data_social = fetch_sheet_data(sheet_id, "社媒询盘", columns_to_extract_sheet)
 
 # 水平合并两个表格
 merged_df = pd.concat([extracted_data.reset_index(drop=True), filtered_data.reset_index(drop=True)], axis=1)
@@ -181,31 +181,31 @@ try:
     target_spreadsheet_id = lifisherSHEET_ID  # 替换为你的目标 Google Sheet ID
     target_spreadsheet = client.open_by_key(target_spreadsheet_id)  # 假设使用第一个工作表
 
-    # 写入 merged_df 到 orderWeb 表
-    target_sheet_web = target_spreadsheet.worksheet("orderWeb")  # 打开 orderWeb 表
+    # 写入 merged_df 到 网站询盘 表
+    target_sheet_web = target_spreadsheet.worksheet("网站询盘")  # 打开 网站询盘 表
     target_sheet_web.clear()  # 清空现有数据
     target_sheet_web.append_row(merged_df.columns.tolist())  # 写入表头
     data_to_write_web = merged_df.values.tolist()  # 转换为二维列表
 
-    # 分批写入数据到 orderWeb
+    # 分批写入数据到 网站询盘
     batch_size = 50  # 每批写入 50 行
     for i in range(0, len(data_to_write_web), batch_size):
         batch = data_to_write_web[i:i + batch_size]
         target_sheet_web.append_rows(batch)  # 使用 append_rows 批量写入
-        print(f"成功写入 {len(batch)} 行数据到 orderWeb")
+        print(f"成功写入 {len(batch)} 行数据到 网站询盘")
         time.sleep(10)  # 每批写入后等待 10 秒，避免超限
 
-    # 写入 extracted_data_social 到 orderSocial 表
-    target_sheet_social = target_spreadsheet.worksheet("orderSocial")  # 打开 orderSocial 表
+    # 写入 extracted_data_social 到 社媒询盘 表
+    target_sheet_social = target_spreadsheet.worksheet("社媒询盘")  # 打开 社媒询盘 表
     target_sheet_social.clear()  # 清空现有数据
     target_sheet_social.append_row(extracted_data_social.columns.tolist())  # 写入表头
     data_to_write_social = extracted_data_social.values.tolist()  # 转换为二维列表
 
-    # 分批写入数据到 orderSocial
+    # 分批写入数据到 社媒询盘
     for i in range(0, len(data_to_write_social), batch_size):
         batch = data_to_write_social[i:i + batch_size]
         target_sheet_social.append_rows(batch)  # 使用 append_rows 批量写入
-        print(f"成功写入 {len(batch)} 行数据到 orderSocial")
+        print(f"成功写入 {len(batch)} 行数据到 社媒询盘")
         time.sleep(10)  # 每批写入后等待 10 秒，避免超限
 
     print("数据成功写入 Google Sheet！")
