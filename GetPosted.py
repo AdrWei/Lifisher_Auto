@@ -157,7 +157,7 @@ filtered_data = filtered_data[columns_to_extract]
 
 # 从 Google Sheets 提取数据
 sheet_id = mySHEET_ID  # 替换为你的 Google Sheet ID
-sheet_name = "网站询盘"  # 替换为你的 sheet 名称
+sheet_name = "网页询盘"  # 替换为你的 sheet 名称
 columns_to_extract_sheet = ["询盘时间", "联系人", "国家", "客户分类","客户背调", "跟进进程", "跟进情况"]  # 替换为你的列名
 extracted_data = fetch_sheet_data(sheet_id, sheet_name, columns_to_extract_sheet)
 extracted_data_social = fetch_sheet_data(sheet_id, "社媒询盘", columns_to_extract_sheet)
@@ -181,18 +181,18 @@ try:
     target_spreadsheet_id = lifisherSHEET_ID  # 替换为你的目标 Google Sheet ID
     target_spreadsheet = client.open_by_key(target_spreadsheet_id)  # 假设使用第一个工作表
 
-    # 写入 merged_df 到 网站询盘 表
-    target_sheet_web = target_spreadsheet.worksheet("网站询盘")  # 打开 网站询盘 表
+    # 写入 merged_df 到 网页询盘 表
+    target_sheet_web = target_spreadsheet.worksheet("网页询盘")  # 打开 网页询盘 表
     target_sheet_web.clear()  # 清空现有数据
     target_sheet_web.append_row(merged_df.columns.tolist())  # 写入表头
     data_to_write_web = merged_df.values.tolist()  # 转换为二维列表
 
-    # 分批写入数据到 网站询盘
+    # 分批写入数据到 网页询盘
     batch_size = 50  # 每批写入 50 行
     for i in range(0, len(data_to_write_web), batch_size):
         batch = data_to_write_web[i:i + batch_size]
         target_sheet_web.append_rows(batch)  # 使用 append_rows 批量写入
-        print(f"成功写入 {len(batch)} 行数据到 网站询盘")
+        print(f"成功写入 {len(batch)} 行数据到 网页询盘")
         time.sleep(10)  # 每批写入后等待 10 秒，避免超限
 
     # 写入 extracted_data_social 到 社媒询盘 表
