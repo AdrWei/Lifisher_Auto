@@ -5,6 +5,8 @@ import requests
 import time
 from requests.exceptions import RequestException
 
+warnings.filterwarnings("ignore")
+
 try:
     # 环境变量
     lifisher_codes = os.getenv("LIFISHER_CODES")
