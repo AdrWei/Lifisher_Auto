@@ -99,7 +99,8 @@ if inquiry_list_response.status_code == 200:
     
     # 检查是否有询盘数据
     if not inquiry_list:
-        print("筛选后的询盘列表为空。")
+        print("没有未分配的询盘。")
+        sys.exit(0)  # 正常退出，返回状态码 0
     else:
         # 提取询盘 ID
         inquiry_ids = [item["id"] for item in inquiry_list]
