@@ -3,6 +3,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from gspread_formatting import *
 
+
 # Google Sheets API setup
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
 SERVICE_ACCOUNT_FILE = 'credentials.json'  # Path to your service account JSON file
@@ -20,7 +21,7 @@ for sheet in spreadsheet.worksheets():
     print(f"正在更新工作表: {sheet.title}")
    
     # 清空所有格式
-    clear_formatting(sheet)
+    sheet.batch_clear(["A:Z"])  # 清空 A 到 Z 列的所有内容和格式
     
     # 定义格式化规则
     cell_format = CellFormat(
