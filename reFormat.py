@@ -18,7 +18,10 @@ spreadsheet = client.open_by_key(SPREADSHEET_ID)
 # 遍历所有工作表
 for sheet in spreadsheet.worksheets():
     print(f"正在更新工作表: {sheet.title}")
-
+   
+    # 清空所有格式
+    clear_formatting(sheet)
+    
     # 定义格式化规则
     cell_format = CellFormat(
         textFormat=TextFormat(
