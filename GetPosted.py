@@ -179,7 +179,7 @@ try:
 
     # 打开目标 Google Sheet
     target_spreadsheet_id = lifisherSHEET_ID  # 替换为你的目标 Google Sheet ID
-    target_spreadsheet = client.open_by_key(target_spreadsheet_id).worksheet("orderWeb")  # 假设使用第一个工作表
+    target_spreadsheet = client.open_by_key(target_spreadsheet_id)  # 假设使用第一个工作表
 
     # 写入 merged_df 到 orderWeb 表
     target_sheet_web = target_spreadsheet.worksheet("orderWeb")  # 打开 orderWeb 表
