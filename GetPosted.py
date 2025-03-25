@@ -1,4 +1,5 @@
 import os
+import warnings
 import json
 import time
 import requests
@@ -7,6 +8,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from requests.exceptions import RequestException
+
+warnings.filterwarnings("ignore")
 
 # 自定义函数：移除空列或空行
 def remove_empty(df, which="cols"):
