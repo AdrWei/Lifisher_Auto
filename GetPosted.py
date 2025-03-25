@@ -160,7 +160,7 @@ sheet_id = mySHEET_ID  # 替换为你的 Google Sheet ID
 sheet_name = "orderWeb"  # 替换为你的 sheet 名称
 columns_to_extract_sheet = ["询盘时间", "联系人", "国家", "客户分类", "跟进进程", "跟进情况"]  # 替换为你的列名
 extracted_data = fetch_sheet_data(sheet_id, sheet_name, columns_to_extract_sheet)
-extracted_data_social = fetch_sheet_data(lifisherSHEET_ID, "orderSocial", columns_to_extract_sheet)
+extracted_data_social = fetch_sheet_data(sheet_id, "orderSocial", columns_to_extract_sheet)
 
 # 水平合并两个表格
 merged_df = pd.concat([extracted_data.reset_index(drop=True), filtered_data.reset_index(drop=True)], axis=1)
