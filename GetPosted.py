@@ -158,7 +158,7 @@ filtered_data = filtered_data[columns_to_extract]
 # 从 Google Sheets 提取数据
 sheet_id = mySHEET_ID  # 替换为你的 Google Sheet ID
 sheet_name = "网站询盘"  # 替换为你的 sheet 名称
-columns_to_extract_sheet = ["询盘时间", "联系人", "国家", "客户分类", "跟进进程", "跟进情况"]  # 替换为你的列名
+columns_to_extract_sheet = ["询盘时间", "联系人", "国家", "客户分类","客户背调", "跟进进程", "跟进情况"]  # 替换为你的列名
 extracted_data = fetch_sheet_data(sheet_id, sheet_name, columns_to_extract_sheet)
 extracted_data_social = fetch_sheet_data(sheet_id, "社媒询盘", columns_to_extract_sheet)
 
