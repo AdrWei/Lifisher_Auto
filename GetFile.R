@@ -113,7 +113,19 @@ while (has_more && page <= MAX_PAGES) {
     # 检查是否有数据
     if (length(res_data$data) > 0) {
       current_page_data <- res_data$data
-      all_data <- rbind(all_data, current_page_data)
+      
+      # 如果是第一页，直接赋值
+      if (page == 1) {
+        all_data <- current_page_data
+      } else {
+        # 确保列名一致
+        common_cols <- intersect(names(all_data), names(current_page_data))
+        all_data <- rbind(
+          all_data[, common_cols, drop = FALSE],
+          current_page_data[, common_cols, drop = FALSE]
+        )
+      }
+      
       cat("成功获取第", page, "页，累计", nrow(all_data), "条记录\n")
       page <- page + 1
     } else {
