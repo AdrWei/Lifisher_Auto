@@ -1,8 +1,6 @@
 name: Keep_Lifisher_Updated
 
 on:
-  schedule:
-    - cron: '0 22 * * *'  # 北京时间 6 点
   workflow_dispatch:
 
 jobs:
