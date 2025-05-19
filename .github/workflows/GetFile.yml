@@ -1,13 +1,6 @@
 name: Update_Our_Sheet
 
 on:
-  schedule:
-    - cron: '10 22 * * *'  # 北京时间 6:10
-    - cron: '10 1 * * *'   # 北京时间 9:10
-    - cron: '10 4 * * *'   # 北京时间 12:10
-    - cron: '10 7 * * *'   # 北京时间 15:10
-    - cron: '10 10 * * *'  # 北京时间 18:10
-    - cron: '10 12 * * *'  # 北京时间 20:10
   workflow_dispatch:  # 允许手动触发
 
 jobs:
